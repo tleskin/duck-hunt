@@ -17,4 +17,17 @@ describe('Duck', function () {
     duck.shoot();
     assert.equal(duck.alive, false );
   });
+
+  it('has a starting position', function () {
+    const duck = new Duck();
+    assert.equal(duck.x, 0 );
+    assert.equal(duck.y, 0 );
+  });
+
+  it('can move', function () {
+    const duck = new Duck();
+    duck.fly();
+    assert.equal(duck.x, 1 );
+    assert.equal(duck.y, 1 );
+  });
 });
