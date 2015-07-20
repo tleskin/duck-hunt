@@ -14,20 +14,21 @@ describe('Duck', function () {
 
   it('can die', function () {
     const duck = new Duck();
-    duck.shoot();
+    duck.shot();
     assert.equal(duck.alive, false );
   });
 
-  it('has a starting position', function () {
+  it('has a starting position and velocity', function () {
     const duck = new Duck();
-    assert.equal(duck.x, 0 );
-    assert.equal(duck.y, 0 );
+    assert.equal(duck.x, 50 );
+    assert.equal(duck.y, 100 );
+    assert.equal(duck.velocity, 256 );
   });
 
   it('can move', function () {
     const duck = new Duck();
     duck.fly();
-    assert.equal(duck.x, 1 );
-    assert.equal(duck.y, 1 );
+    assert.equal(duck.x, 306 );
+    assert.equal(duck.y, 356 );
   });
 });
