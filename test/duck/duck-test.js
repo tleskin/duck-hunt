@@ -22,13 +22,13 @@ describe('Duck', function () {
     const duck = new Duck();
     assert.equal(duck.x, 50 );
     assert.equal(duck.y, 100 );
-    assert.equal(duck.velocity, 256 );
   });
 
   it('can move', function () {
-    const duck = new Duck();
-    duck.fly();
-    assert.equal(duck.x, 306 );
-    assert.equal(duck.y, 356 );
+    // const duck = new Duck();
+    const duck = new Duck(50, 50, { height:300, width: 400});
+    duck.move();
+
+    assert.notEqual(duck.x, 50 );
   });
 });
