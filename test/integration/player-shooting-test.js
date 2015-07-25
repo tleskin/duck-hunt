@@ -41,4 +41,16 @@ describe('Integration of components', function () {
     game.scoreKeeper(playerShotMiss, duck);
     assert.equal(game.successfulHits, 0);
   });
+
+  it('restarts', function() {
+    const game = new Game;
+    const duck = new Duck;
+    game.successfulHits = 1;
+    game.shot_count = 0;
+    assert.equal(game.successfulHits, 1);
+    assert.equal(game.shot_count, 0);
+    game.resetGame(duck);
+    assert.equal(game.successfulHits, 0);
+    assert.equal(game.shot_count, 3);
+  });
 });

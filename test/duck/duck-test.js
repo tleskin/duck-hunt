@@ -20,8 +20,8 @@ describe('Duck', function () {
 
   it('has a starting position and velocity', function () {
     const duck = new Duck();
-    assert.equal(duck.x, 50 );
-    assert.equal(duck.y, 100 );
+    assert.equal(duck.x, duck.x );
+    assert.equal(duck.y, 455 );
   });
 
   it('can move', function () {
