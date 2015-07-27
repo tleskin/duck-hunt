@@ -28,7 +28,6 @@ describe('Duck', function () {
     // const duck = new Duck();
     const duck = new Duck(50, 50, { height:300, width: 400});
     duck.move();
-
     assert.notEqual(duck.x, 50 );
   });
 });

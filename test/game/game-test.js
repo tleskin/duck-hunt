@@ -16,6 +16,4 @@ describe('Game', function () {
     const game = new Game;
     assert.equal(game.successfulHits, 0);
   });
-
-
 });
