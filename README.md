@@ -10,7 +10,7 @@ DuckHunt.js is a game written in JavaScript. It was a project completed as part 
 
 ## Demo
 
-A [DEMO](http://tleskin.github.io/duck-hunt) can be viewed here.
+[A demo can be viewed here.](http://tleskin.github.io/duck-hunt)
 
 ## More
 
