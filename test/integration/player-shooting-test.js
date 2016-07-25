@@ -1,55 +1,56 @@
 const assert = require('chai').assert;
 const Game = require('../../lib/game')
 const Duck = require('../../lib/duck')
-const Player = require('../../lib/player')
 
-describe('game', function () {
+describe('Integration of components', function () {
 
   it('can shoot and miss', function () {
     const duck = new Duck(50, 50, { height:300, width: 400})
-    const player = new Player;
     const game = new Game;
-    var playerShot = player.shoot(2, 3);
-    game.scoreKeeper(playerShot, duck);
+    var playerShotMiss = {shoot_count: 1, canvas: undefined, x: 2, y: 3};
+    game.scoreKeeper(playerShotMiss, duck);
     assert.equal(game.successfulHits, 0);
   });
 
   it('can hit', function () {
     const duck = new Duck;
-    const player = new Player;
     const game = new Game;
-    var playerShot = player.shoot(duck.x, duck.y);
-    game.scoreKeeper(playerShot, duck);
+    var playerShotHit = {shoot_count: 1, canvas: undefined, x: duck.x, y: duck.y};
+    game.scoreKeeper(playerShotHit, duck);
     assert.equal(game.successfulHits, 1);
   });
 
   it('can keep score', function() {
     const duck = new Duck;
-    const player = new Player;
     const game = new Game;
-    var playerShot1 = player.shoot(duck.x, duck.y);
-    game.scoreKeeper(playerShot1, duck);
-    var playerShot2 = player.shoot(duck.x, duck.y);
-    game.scoreKeeper(playerShot2, duck);
-    var playerShot3 = player.shoot(4, 8);
-    game.scoreKeeper(playerShot3, duck);
-    var playerShot4 = player.shoot(duck.x, duck.y);
-    game.scoreKeeper(playerShot4, duck);
+    var playerShotHit = {shoot_count: 1, canvas: undefined, x: duck.x, y: duck.y};
+    var playerShotMiss = {shoot_count: 1, canvas: undefined, x: 2, y: 3};
+    game.scoreKeeper(playerShotHit, duck);
+    game.scoreKeeper(playerShotHit, duck);
+    game.scoreKeeper(playerShotMiss, duck);
+    game.scoreKeeper(playerShotHit, duck);
     assert.equal(game.successfulHits, 2);
   });
 
   it('can only shoot at one duck three times', function () {
     const duck = new Duck;
-    const player = new Player;
     const game = new Game;
-    var playerShot1 = player.shoot(1, 1);
-    game.scoreKeeper(playerShot1, duck);
-    var playerShot2 = player.shoot(1, 1);
-    game.scoreKeeper(playerShot2, duck);
-    var playerShot3 = player.shoot(1, 1);
-    game.scoreKeeper(playerShot3, duck);
-    var playerShot4 = player.shoot(duck.x, duck.y);
-    game.scoreKeeper(playerShot4, duck);
+    var playerShotMiss = {shoot_count: 1, canvas: undefined, x: 2, y: 3};
+    game.scoreKeeper(playerShotMiss, duck);
+    game.scoreKeeper(playerShotMiss, duck);
+    game.scoreKeeper(playerShotMiss, duck);
     assert.equal(game.successfulHits, 0);
+  });
+
+  it('restarts', function() {
+    const game = new Game;
+    const duck = new Duck;
+    game.successfulHits = 1;
+    game.shot_count = 0;
+    assert.equal(game.successfulHits, 1);
+    assert.equal(game.shot_count, 0);
+    game.resetGame(duck);
+    assert.equal(game.successfulHits, 0);
+    assert.equal(game.shot_count, 3);
   });
 });
